@@ -9,6 +9,8 @@ from .models import Empleados
 # Listar todos los empleados de la empresa
 class ListAllEmpleados(ListView):
   template_name = 'empleados/list_all.html'
+  paginate_by = 2
+  ordering = ['nombres']
   model = Empleados
 
 # Listar los empleados que pertenecen a un area de la empresa
