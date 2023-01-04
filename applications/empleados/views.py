@@ -36,4 +36,19 @@ class ListEmpleadosTrabajo(ListView):
     return lista
 
 # Listar los empleados por palabra clave
+class ListEmpleadosPalabraClave(ListView):
+  """Listar empleados por palabra clave"""
+
+  template_name = 'empleados/list_by_kword.html'
+  model = Empleados
+  context_object_name = 'empleados'
+
+  def get_queryset(self):
+    buscar = self.request.GET.get('kword',)
+
+    lista = Empleados.objects.filter(
+      nombres = buscar
+    )
+
+    return lista
 # Listar habilidades de un empleado
