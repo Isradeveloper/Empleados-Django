@@ -20,7 +20,7 @@ class EmpleadosAdmin(admin.ModelAdmin):
   #
 
   search_fields = ('nombres', 'apellidos',)
-  list_filter = ('profesion', 'habilidades',)
+  list_filter = ('departamento','profesion', 'habilidades',)
   filter_horizontal = ('habilidades',)
 
 admin.site.register(Empleados, EmpleadosAdmin)
