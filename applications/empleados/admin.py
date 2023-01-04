@@ -9,7 +9,15 @@ class EmpleadosAdmin(admin.ModelAdmin):
     'apellidos',
     'profesion',
     'departamento',
+    'nombre_completo',
   )
+
+  #
+  def nombre_completo(self, obj):
+    # Itera todos los objetos de la tabla 
+    print(obj.nombres)
+    return (f'{obj.nombres} {obj.apellidos}')
+  #
 
   search_fields = ('nombres', 'apellidos',)
   list_filter = ('profesion', 'habilidades',)
