@@ -8,7 +8,7 @@ class Departamentos(models.Model):
   activo = models.BooleanField('Activo', default=True, )
 
   def __str__(self):
-    return (f'[{self.id}] Nombre: {self.nombre}, Nombre corto: {self.nombre_corto}, Activo: {self.activo}')
+    return (f'[{self.id}] {self.nombre} - {self.nombre_corto} - Activo: {self.activo}')
 
   class Meta: 
     verbose_name = 'Departamento'
