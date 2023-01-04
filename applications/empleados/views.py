@@ -22,7 +22,18 @@ class ListEmpleadosArea(ListView):
       departamento__nombre_corto = area
     )
     return lista
+
 # Listar empleados por trabajo
+class ListEmpleadosTrabajo(ListView):
+  template_name = 'empleados/list_by_job.html'
+  model = Empleados
+
+  def get_queryset(self):
+    job = self.kwargs['profesion']
+    lista = Empleados.objects.filter(
+      profesion = job
+    )
+    return lista
+
 # Listar los empleados por palabra clave
 # Listar habilidades de un empleado
-
