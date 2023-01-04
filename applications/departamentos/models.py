@@ -4,7 +4,7 @@ from django.db import models
 
 class Departamentos(models.Model):
   nombre = models.CharField('Nombre', max_length=50)
-  nombre_corto = models.CharField('Nombre corto', max_length=20)
+  nombre_corto = models.CharField('Nombre corto', max_length=20, unique=True)
   activo = models.BooleanField('Activo', default=True, )
 
   def __str__(self):
