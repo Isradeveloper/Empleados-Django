@@ -47,7 +47,7 @@ class ListEmpleadosPalabraClave(ListView):
     buscar = self.request.GET.get('kword',)
 
     lista = Empleados.objects.filter(
-      nombres = buscar
+      nombres__icontains=buscar
     )
 
     return lista
