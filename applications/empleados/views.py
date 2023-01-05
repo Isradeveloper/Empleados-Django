@@ -53,4 +53,16 @@ class ListEmpleadosPalabraClave(ListView):
     )
 
     return lista
+
 # Listar habilidades de un empleado
+class ListHabilidadesEmpleado(ListView):
+  template_name = 'empleados/habilidades.html'
+  context_object_name = 'habilidades'
+
+  def get_queryset(self):
+    numero_id = self.request.GET.get('id',)
+    if (numero_id == ''):
+      return []
+    empleado = Empleados.objects.get(id=numero_id)
+    habilidades = empleado.habilidades.all()
+    return habilidades

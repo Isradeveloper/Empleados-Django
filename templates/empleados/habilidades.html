@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de habilidades por usuario</title>
+  </head>
+  <body>
+    <h1>Buscar empleado</h1>
+    <div class="contenedor-form" style="border: 1px solid #5d5dff; display: flex; justify-content: start; align-items: center;">
+      <form method="get">{% csrf_token %}
+        <label for="id">Ingresar ID del usuario</label>
+        <input type="number" id="id" name="id" placeholder="Ingrese ID usuario">
+        <button type="submit">Buscar</button>
+      </form>
+    </div>
+    <hr>
+    <h3>Lista resultados</h3>
+    <ul>
+      
+      {% for habilidad in habilidades %}
+        <li>{{habilidad}}</li>
+      {% endfor %}
+        
+    </ul>
+  </body>
+</html>

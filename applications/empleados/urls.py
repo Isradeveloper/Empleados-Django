@@ -6,4 +6,5 @@ urlpatterns = [
     path('listar_empleados_area/<nombre_corto>/', views.ListEmpleadosArea.as_view()),
     path('listar_empleados_profesion/<profesion>/', views.ListEmpleadosTrabajo.as_view()),
     path('listar_empleados_busqueda', views.ListEmpleadosPalabraClave.as_view()),
+    path('listar_habilidades_empleado', views.ListHabilidadesEmpleado.as_view()),
 ]
