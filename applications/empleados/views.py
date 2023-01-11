@@ -1,6 +1,6 @@
 from django.shortcuts import render
 #Importar vistas genericas
-from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView
 #Importamos modelos
 from .models import Empleados
 
@@ -113,3 +113,16 @@ class EmpleadosCreateView(CreateView):
 
 class successView(TemplateView):
     template_name = "empleados/success.html"
+
+
+class EmpleadoUpdateView(UpdateView):
+    model = Empleados
+    template_name = "empleados/update.html"
+    fields = ['nombres', 'apellidos', 'profesion', 'departamento', 'habilidades', 'descripcion']
+    success_url = reverse_lazy('empleados_app:correcto')
+
+    def post(self, request, *args: str, **kwargs):
+      print(f'*************POST************************')
+      print(request.POST)
+      print(request.POST['apellidos'])
+      return super().post(request, *args, **kwargs)
