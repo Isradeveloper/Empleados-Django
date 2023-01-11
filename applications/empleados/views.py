@@ -1,12 +1,15 @@
 from django.shortcuts import render
 #Importar vistas genericas
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView
 #Importamos modelos
 from .models import Empleados
+
+from django.urls import reverse_lazy
 
 # Create your views here.
 
 # Listar todos los empleados de la empresa
+# En url agregar ?page=1,2..n
 class ListAllEmpleados(ListView):
   template_name = 'empleados/list_all.html'
   paginate_by = 2
@@ -54,7 +57,7 @@ class ListEmpleadosPalabraClave(ListView):
 
     return lista
 
-# Listar habilidades de un empleado
+# Listar habilidades de un empleado N:M
 class ListHabilidadesEmpleado(ListView):
   template_name = 'empleados/habilidades.html'
   context_object_name = 'habilidades'
@@ -66,3 +69,31 @@ class ListHabilidadesEmpleado(ListView):
     empleado = Empleados.objects.get(id=numero_id)
     habilidades = empleado.habilidades.all()
     return habilidades
+
+# Acceder a la información de los empleados
+class EmpleadosDetailView(DetailView):
+    model = Empleados
+    template_name = "empleados/detail_empleados.html"
+
+    # Agregar variables a la view
+    def get_context_data(self, **kwargs):
+        context = super(EmpleadosDetailView, self).get_context_data(**kwargs)
+        context['titulo'] = 'Empleado del mes'
+        return context
+
+
+class EmpleadosCreateView(CreateView):
+    model = Empleados
+    template_name = "empleados/crear_empleado.html"
+    # fields = ['nombres', 'apellidos', 'profesion']
+    fields = ('__all__')
+    # Se recargue misma pagina
+    # success_url = '.' 
+
+    # success_url = '/success'
+
+    success_url = reverse_lazy('empleados_app:correcto')
+
+
+class successView(TemplateView):
+    template_name = "empleados/success.html"
