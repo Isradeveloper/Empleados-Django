@@ -1,6 +1,6 @@
 from django.shortcuts import render
 #Importar vistas genericas
-from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
 #Importamos modelos
 from .models import Empleados
 
@@ -126,3 +126,18 @@ class EmpleadoUpdateView(UpdateView):
       print(request.POST)
       print(request.POST['apellidos'])
       return super().post(request, *args, **kwargs)
+
+
+class EmpleadoDeleteView(DeleteView):
+    model = Empleados
+    template_name = "empleados/delete.html"
+    success_url = reverse_lazy('empleados_app:correcto')
+    context_object_name = 'empleado'
+
+    def get_queryset(self):
+      pk = self.kwargs['pk']
+      empleado = Empleados.objects.filter(
+        id = pk
+      )
+      return empleado
+
