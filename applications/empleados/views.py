@@ -70,7 +70,7 @@ class ListHabilidadesEmpleado(ListView):
     habilidades = empleado.habilidades.all()
     return habilidades
 
-# Acceder a la información de los empleados
+# Acceder a la información de los empleados (agregar pk en urls)
 class EmpleadosDetailView(DetailView):
     model = Empleados
     template_name = "empleados/detail_empleados.html"
@@ -81,19 +81,35 @@ class EmpleadosDetailView(DetailView):
         context['titulo'] = 'Empleado del mes'
         return context
 
-
+# Agregar 
 class EmpleadosCreateView(CreateView):
     model = Empleados
     template_name = "empleados/crear_empleado.html"
-    # fields = ['nombres', 'apellidos', 'profesion']
-    fields = ('__all__')
+    fields = ['nombres', 'apellidos', 'profesion', 'departamento', 'habilidades', 'descripcion']
+
+    # Todos
+    # fields = ('__all__')
+
     # Se recargue misma pagina
     # success_url = '.' 
 
     # success_url = '/success'
 
+    # Colocar nombre al archivo de rutas y rutas especificas
     success_url = reverse_lazy('empleados_app:correcto')
 
+    # Interceptar cuando el form es valido
+    def form_valid(self, form):
+      # Logica del proceso
+
+      # guarda todos los datos del formulario
+      # Commit False - Crea la instancia pero no guarda 2 veces
+      empleado = form.save(commit=False)
+      empleado.full_name = (f'{empleado.nombres} {empleado.apellidos}')
+
+      empleado.save()
+      
+      return super(EmpleadosCreateView, self).form_valid(form)
 
 class successView(TemplateView):
     template_name = "empleados/success.html"

@@ -10,11 +10,12 @@ class EmpleadosAdmin(admin.ModelAdmin):
     'apellidos',
     'profesion',
     'departamento',
-    'nombre_completo',
+    'full_name',
+    'nombre_completo_funcion',
   )
 
   #
-  def nombre_completo(self, obj):
+  def nombre_completo_funcion(self, obj):
     # Itera todos los objetos de la tabla 
     print(obj.nombres)
     return (f'{obj.nombres} {obj.apellidos}')

@@ -27,6 +27,7 @@ class Empleados(models.Model):
 
   nombres = models.CharField('Nombres', max_length=50)
   apellidos = models.CharField('Apellidos', max_length=50)
+  full_name = models.CharField('Nombre completo', max_length=101, blank=True)
   profesion = models.CharField('Profesion', max_length=1, choices=TRABAJO_CHOICES)
   departamento = models.ForeignKey(Departamentos, on_delete=models.CASCADE)
   # image = models.ImageField(, upload_to=None, height_field=None, width_field=None, max_length=None)
