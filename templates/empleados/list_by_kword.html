@@ -1,27 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lista empleado por palabra clave</title>
-  </head>
-  <body>
-    <h1>Buscar empleados</h1>
-    <div class="contenedor-form" style="border: 1px solid #5d5dff; display: flex; justify-content: start; align-items: center;">
-      <form method="get">{% csrf_token %}
-        <input type="text" id="kword" name="kword" placeholder="Ingrese palabra a buscar">
-        <button type="submit">Buscar</button>
-      </form>
-    </div>
-    <hr>
-    <h3>Lista resultados</h3>
-    <ul>
-      
-      {% for empleado in empleados %}
-        <li>{{empleado}}</li>
-      {% endfor %}
-        
-    </ul>
-  </body>
-</html>
+<h1>Buscar empleados</h1>
+<div
+  class="contenedor-form"
+  style="
+    border: 1px solid #5d5dff;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  "
+>
+  <form method="get">
+    {% csrf_token %}
+    <input
+      type="text"
+      id="kword"
+      name="kword"
+      placeholder="Ingrese palabra a buscar"
+    />
+    <button type="submit">Buscar</button>
+  </form>
+</div>
+<hr />
+<h3>Lista resultados</h3>
+<ul>
+  {% for empleado in empleados %}
+  <li>{{empleado}}</li>
+  {% endfor %}
+</ul>
