@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 from .forms import NewDepartamentoForm
 from django.urls import reverse_lazy
 from applications.empleados.models import Empleados
@@ -8,6 +8,24 @@ from .models import Departamentos
 from django import forms
 
 # Create your views here.
+
+
+class DepartamentosListView(ListView):
+    model = Departamentos
+    template_name = "departamentos/all.html"
+    context_object_name = 'lista'
+
+
+class DepartamentosDetailView(DetailView):
+    model = Departamentos
+    template_name = "departamentos/ver.html"
+
+    
+    def get_context_data(self, **kwargs):
+        context = super(DepartamentosDetailView, self).get_context_data(**kwargs)
+        return context
+    
+
 
 class NewDepartamentoView(FormView):
   template_name = 'departamentos/add.html'
@@ -36,15 +54,6 @@ class NewDepartamentoView(FormView):
   
     return super().form_valid(form)
 
-  def clean_nombres_empleado(self):
-    nombres_empleado = self.cleaned_data.get('nombres_empleado')
-
-    # TODO Validation
-
-    if len(nombres_empleado) <= 2:
-      raise forms.ValidationError('El nombre del empleado debe tener más de 2 carácteres')
-  
-    return nombres_empleado
 
 class SuccessAdd(TemplateView):
   print('*********************************')

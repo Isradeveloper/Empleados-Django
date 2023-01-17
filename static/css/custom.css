@@ -19,6 +19,11 @@
   font-weight: 600;
 }
 
+.titulo-departamento{
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 /* .pagination .paginate_button.page-item.active .page-link {
   background-color: #ff5d5d;
   border: 1px solid #880d0d;

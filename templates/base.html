@@ -40,22 +40,10 @@
       src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"
     ></script>
 
-    <script>
-      $(document).ready(function () {
-        $("#tabla").DataTable({
-          language: {
-            url: "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json",
-          },
-          paging: true,
-          pageLength: 5,
-          lengthChange: true,
-          autoWidth: true,
-          searching: true,
-          bInfo: true,
-          bSort: true,
-          columnDefs: [{ orderable: false, targets: 4 }],
-        });
-      });
-    </script>
+    
+    {% block configDataTable %}
+      
+    {% endblock configDataTable %}
+      
   </body>
 </html>

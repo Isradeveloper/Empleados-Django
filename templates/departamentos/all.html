@@ -1,41 +1,41 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block title %}
-  Ver empleados
+  Ver Departamentos
 {% endblock title %}
 
 
 {% block body %}
   {% include 'includes/nav.html' %}
-  
-  <h2 class="m-4">Ver empleados DATATABLE</h2>
 
+  <div class="titulo-departamento m-4">Departamentos de la empresa</div>
 
-  <div class="container mb-4">
+  <div class="container">
     <table class="table table-striped table-dark" id="tabla">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Nombres</th>
-          <th>Apellidos</th>
-          <th>Departamento</th>
+          <th>Nombre</th>
+          <th>Nombre corto</th>
           <th>Acción</th>
         </tr>
       </thead>
-
       <tbody>
-        {% for item in lista %}
-        <tr>
-          <td>{{item.id}}</td>
-          <td>{{item.nombres}}</td>
-          <td>{{item.apellidos}}</td>
-          <td>{{item.departamento}}</td>
-          <td><a href="{% url 'empleados_app:ver' item.id %}" class="btn btn-primary">Ver</a></td>
-        </tr>
+        {% for departamento in lista %}
+          <tr>
+            <td>
+              {{departamento.nombre}}
+            </td>
+            <td>
+              {{departamento.nombre_corto}}
+            </td>
+            <td style="width: 1rem;">
+              <a href="{% url 'departamentos_app:ver' departamento.id %}" class="btn btn-primary">Ver</a>
+            </td>
+          </tr>
         {% endfor %}
 
-        
         {% block configDataTable %}
         <script>
           $(document).ready(function () {
@@ -44,23 +44,19 @@
                 url: "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json",
               },
               paging: true,
-              pageLength: 5,
+              pageLength: 10,
               lengthChange: true,
               autoWidth: true,
               searching: true,
               bInfo: true,
               bSort: true,
-              columnDefs: [{ orderable: false, targets: 4 }],
+              columnDefs: [{ orderable: false, targets: 2 }],
             });
           });
         </script>
         {% endblock configDataTable %}
-          
-      </tbody>  
-        
+      </tbody>
     </table>
   </div>
 {% endblock body %}
   
-  
-
