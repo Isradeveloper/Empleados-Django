@@ -1,0 +1,9 @@
+<form method="post"> {% csrf_token %}
+  <h3>Encargado del departamento</h3>
+  <p>{{form.nombres_empleado}}</p>
+  <p>{{form.apellidos_empleado}}</p>
+  <h3>Departamento</h3>
+  <p>{{form.nombre_departamento}}</p>
+  <p>{{form.nombre_corto_departamento}}</p>
+  <button type="submit">Guardar</button>
+</form>
