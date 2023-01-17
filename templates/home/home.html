@@ -1,12 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-  </head>
-  <body>
-    <h1>Probando el patrón de diseño</h1>
-  </body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Home
+{% endblock title %}
+
+
+{% block body %}
+  {% include 'includes/nav.html' %}
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'img/1.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'img/2.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="row gx-0 d-flex justify-content-center">
+    <div class="col-8 mt-4 titulo-home text-center">Bienvenido al sistema de registro de empleados</div>
+    <div class="col-8 card text-center my-4">
+      <div class="card-body">
+        <h5 class="card-title">Registro y control de empleados</h5>
+        <p class="card-text">Gestiona el personal de tu empresa de la manera más eficiente.</p>
+        <a href="{% url 'empleados_app:all' %}" class="btn btn-primary">Ver empleados</a>
+      </div>
+    </div>
+  </div>
+
+  
+{% endblock body %}
+  

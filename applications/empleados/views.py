@@ -14,7 +14,21 @@ class ListAllEmpleados(ListView):
   template_name = 'empleados/list_all.html'
   paginate_by = 2
   ordering = ['nombres']
+  context_object_name = 'lista'
+
+  def get_queryset(self):
+    buscar = self.request.GET.get('kword', '')
+    lista = Empleados.objects.filter(
+      nombres__icontains = buscar
+    )
+    return lista
+
+class ListAllEmpleadosDataTable(ListView):
+  template_name = 'empleados/list_all_datatable.html'
+  # paginate_by = 2
+  # ordering = ['nombres']
   model = Empleados
+  context_object_name = 'lista'
 
 # Listar los empleados que pertenecen a un area de la empresa
 class ListEmpleadosArea(ListView):

@@ -7,8 +7,8 @@ from .forms import PruebaForm
 
 # Create your views here.
 
-class IndexView(TemplateView):
-  template_name = 'home/home.html'
+# class IndexView(TemplateView):
+#   template_name = 'home/home.html'
 
 class PruebaListView(ListView):
   template_name = 'home/lista.html'
@@ -33,4 +33,10 @@ class PruebaCreateView(CreateView):
 
 class SuccessView(TemplateView):
     template_name = "home/success.html"
+
+
+
+class HomeView(TemplateView):
+    template_name = "home/home.html"
+
 

@@ -1,0 +1,29 @@
+
+.prueba {
+  background-color: red;
+  font-size: 4rem;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  padding-right: 2rem;
+}
+
+.carousel-inner {
+  width: 100%;
+  height: 40rem;
+}
+
+.titulo-home {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* .pagination .paginate_button.page-item.active .page-link {
+  background-color: #ff5d5d;
+  border: 1px solid #880d0d;
+} */
+
+/* .pagination .paginate_button.page-item.active .page-link:focus{
+  box-shadow: #880d0d;
+} */
